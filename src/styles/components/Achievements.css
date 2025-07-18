@@ -1,0 +1,345 @@
+.achievements-container {
+  max-width: 100%;
+}
+
+.achievements-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header-icon {
+  color: var(--orange);
+  margin-bottom: 15px;
+}
+
+.achievements-header h1 {
+  color: var(--dark-gray);
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.achievements-header p {
+  color: var(--dark-gray);
+  opacity: 0.8;
+  font-size: 1.1rem;
+}
+
+.stats-section {
+  margin-bottom: 50px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.stat-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border-top: 4px solid var(--sage-green);
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-icon {
+  color: var(--sage-green);
+  margin-bottom: 15px;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--dark-gray);
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: var(--dark-gray);
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.achievement-category {
+  margin-bottom: 50px;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.category-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.category-header h2 {
+  color: var(--dark-gray);
+  font-size: 2rem;
+  margin: 0;
+}
+
+.achievements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.achievement-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid var(--sage-green);
+}
+
+.achievement-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.achievement-content {
+  flex: 1;
+}
+
+.achievement-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.achievement-header h3 {
+  color: var(--dark-gray);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.achievement-date {
+  color: var(--sage-green);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.achievement-issuer {
+  color: var(--coral-pink);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.achievement-description {
+  color: var(--dark-gray);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.achievement-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-left: 20px;
+  flex-shrink: 0;
+}
+
+.future-goals {
+  margin-bottom: 50px;
+}
+
+.future-goals h2 {
+  color: var(--dark-gray);
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.goal-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border-bottom: 4px solid var(--orange);
+}
+
+.goal-card:hover {
+  transform: translateY(-5px);
+}
+
+.goal-icon {
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+
+.goal-card h3 {
+  color: var(--dark-gray);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.goal-card p {
+  color: var(--dark-gray);
+  opacity: 0.8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.testimonials-section {
+  background: var(--light-gray);
+  padding: 50px 40px;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+.testimonials-section h2 {
+  color: var(--dark-gray);
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.testimonial-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-3px);
+}
+
+.testimonial-content {
+  margin-bottom: 20px;
+}
+
+.testimonial-content p {
+  color: var(--dark-gray);
+  opacity: 0.9;
+  line-height: 1.7;
+  margin: 0;
+  font-style: italic;
+  font-size: 1.05rem;
+}
+
+.testimonial-author strong {
+  color: var(--dark-gray);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.testimonial-author span {
+  color: var(--sage-green);
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .achievements-header h1 {
+    font-size: 2rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .achievement-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .achievement-badge {
+    margin-left: 0;
+    align-self: center;
+  }
+
+  .achievement-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .goals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-section {
+    padding: 40px 20px;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .achievements-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .achievement-card {
+    padding: 20px;
+  }
+
+  .goal-card {
+    padding: 25px;
+  }
+
+  .testimonials-section {
+    padding: 30px 15px;
+  }
+
+  .testimonial-card {
+    padding: 25px;
+  }
+}
