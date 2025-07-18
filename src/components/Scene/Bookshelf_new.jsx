@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Box, Text, Billboard } from "@react-three/drei";
+import { Box, Text } from "@react-three/drei";
 import { COLORS } from "../../utils/constants";
 import Experience from "../Content/Experience";
 
@@ -37,7 +37,7 @@ const Bookshelf = ({ position, openModal }) => {
       onPointerLeave={() => setHovered(false)}
       onClick={handleClick}
       style={{ cursor: hovered ? "pointer" : "auto" }}
-      rotation={[0, Math.PI, 0]}
+      rotation={[0, Math.PI / 2, 0]}
     >
       {/* Wall-mounted bookshelf frame */}
       <Box args={[0.3, 3, 2]} position={[0, 1.5, 0]} castShadow receiveShadow>
@@ -123,16 +123,16 @@ const Bookshelf = ({ position, openModal }) => {
 
       {/* Hover Indicator */}
       {hovered && (
-        <Billboard position={[0.8, 2.5, 0]}>
-          <Text
-            fontSize={0.35}
-            color={COLORS.CORAL_PINK}
-            anchorX="center"
-            anchorY="middle"
-          >
-            Experience & Skills
-          </Text>
-        </Billboard>
+        <Text
+          position={[1, 2, 0]}
+          fontSize={0.3}
+          color={COLORS.CORAL_PINK}
+          anchorX="center"
+          anchorY="middle"
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          Experience & Skills
+        </Text>
       )}
     </group>
   );

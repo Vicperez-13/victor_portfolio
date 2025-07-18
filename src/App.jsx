@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment } from "@react-three/drei";
 import Room from "./components/Scene/Room";
 import Modal from "./components/UI/Modal";
+import Navigation from "./components/UI/Navigation";
 import { useModal } from "./hooks/useModal";
 
 function App() {
@@ -17,33 +18,36 @@ function App() {
   return (
     <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
       {/* Debug indicator */}
-      <div style={{ 
-        position: "absolute", 
-        top: "10px", 
-        right: "10px", 
-        background: "rgba(255,255,255,0.9)", 
-        padding: "8px 12px", 
-        borderRadius: "4px",
-        zIndex: 1000,
-        fontSize: "14px"
-      }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          background: "rgba(255,255,255,0.9)",
+          padding: "8px 12px",
+          borderRadius: "4px",
+          zIndex: 1000,
+          fontSize: "14px",
+        }}
+      >
         App Loading ✅
       </div>
 
       <Canvas
         camera={{
-          position: [10, 8, 10],
-          fov: 50,
+          position: [12, 10, 12],
+          fov: 65,
         }}
         shadows
-        style={{ background: "linear-gradient(to bottom, #87CEEB, #E0F6FF)" }}
+        style={{ background: "linear-gradient(to bottom, #2C2C2C, #000000)" }}
       >
         <Suspense fallback={null}>
-          {/* Improved Lighting */}
-          <ambientLight intensity={0.8} />
+          {/* Warm Relaxing Lighting */}
+          <ambientLight intensity={0.4} color="#FFA366" />
           <directionalLight
             position={[20, 20, 20]}
-            intensity={1.5}
+            intensity={0.8}
+            color="#FFB366"
             castShadow
             shadow-mapSize-width={2048}
             shadow-mapSize-height={2048}
@@ -53,7 +57,7 @@ function App() {
             shadow-camera-top={20}
             shadow-camera-bottom={-20}
           />
-          <pointLight position={[0, 10, 0]} intensity={0.6} />
+          <pointLight position={[0, 10, 0]} intensity={0.3} color="#FF9966" />
 
           {/* Environment */}
           <Environment preset="city" />
@@ -77,6 +81,9 @@ function App() {
 
       {/* Modal System */}
       <Modal isOpen={isModalOpen} onClose={closeModal} content={modalContent} />
+
+      {/* Navigation */}
+      <Navigation onSectionClick={handleSectionClick} />
     </div>
   );
 }

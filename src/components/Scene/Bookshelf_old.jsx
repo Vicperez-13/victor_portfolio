@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Box, Text, Billboard } from "@react-three/drei";
+import { Box, Text } from "@react-three/drei";
 import { COLORS } from "../../utils/constants";
 import Experience from "../Content/Experience";
 
@@ -37,7 +37,7 @@ const Bookshelf = ({ position, openModal }) => {
       onPointerLeave={() => setHovered(false)}
       onClick={handleClick}
       style={{ cursor: hovered ? "pointer" : "auto" }}
-      rotation={[0, Math.PI, 0]}
+      rotation={[0, Math.PI / 2, 0]}
     >
       {/* Wall-mounted bookshelf frame */}
       <Box args={[0.3, 3, 2]} position={[0, 1.5, 0]} castShadow receiveShadow>
@@ -55,15 +55,21 @@ const Bookshelf = ({ position, openModal }) => {
           <meshLambertMaterial color={COLORS.BEIGE} />
         </Box>
       ))}
+          position={[0, y, 0]}
+          castShadow
+        >
+          <meshLambertMaterial color={COLORS.BEIGE} />
+        </Box>
+      ))}
 
       {/* Books on shelves */}
       {/* Bottom shelf */}
       <group position={[0, 0.55, 0]}>
-        {Array.from({ length: 6 }).map((_, i) => (
+        {Array.from({ length: 8 }).map((_, i) => (
           <Box
             key={i}
-            args={[0.2, 0.4, 0.15]}
-            position={[0, 0.2, -0.6 + i * 0.2]}
+            args={[0.15, 0.4, 0.2]}
+            position={[-0.7 + i * 0.2, 0.2, 0]}
             castShadow
           >
             <meshLambertMaterial
@@ -79,11 +85,11 @@ const Bookshelf = ({ position, openModal }) => {
 
       {/* Middle shelf */}
       <group position={[0, 1.55, 0]}>
-        {Array.from({ length: 7 }).map((_, i) => (
+        {Array.from({ length: 6 }).map((_, i) => (
           <Box
             key={i}
-            args={[0.2, 0.35, 0.12]}
-            position={[0, 0.18, -0.7 + i * 0.2]}
+            args={[0.2, 0.5, 0.2]}
+            position={[-0.5 + i * 0.2, 0.25, 0]}
             castShadow
           >
             <meshLambertMaterial
@@ -97,15 +103,24 @@ const Bookshelf = ({ position, openModal }) => {
             />
           </Box>
         ))}
+
+        {/* Trophy */}
+        <Box args={[0.15, 0.3, 0.15]} position={[0.7, 0.15, 0]} castShadow>
+          <meshLambertMaterial
+            color={COLORS.ORANGE}
+            metalness={0.8}
+            roughness={0.2}
+          />
+        </Box>
       </group>
 
       {/* Top shelf */}
       <group position={[0, 2.55, 0]}>
-        {Array.from({ length: 5 }).map((_, i) => (
+        {Array.from({ length: 7 }).map((_, i) => (
           <Box
             key={i}
-            args={[0.2, 0.3, 0.18]}
-            position={[0, 0.15, -0.5 + i * 0.2]}
+            args={[0.12, 0.35, 0.18]}
+            position={[-0.6 + i * 0.18, 0.175, 0]}
             castShadow
           >
             <meshLambertMaterial
@@ -121,18 +136,45 @@ const Bookshelf = ({ position, openModal }) => {
         ))}
       </group>
 
-      {/* Hover Indicator */}
-      {hovered && (
-        <Billboard position={[0.8, 2.5, 0]}>
-          <Text
-            fontSize={0.35}
-            color={COLORS.CORAL_PINK}
-            anchorX="center"
-            anchorY="middle"
+      {/* Decorative plant on top */}
+      <group position={[0.6, 3.2, 0]}>
+        {/* Pot */}
+        <Box args={[0.2, 0.15, 0.2]} position={[0, 0.075, 0]} castShadow>
+          <meshLambertMaterial color={COLORS.CORAL_PINK} />
+        </Box>
+        {/* Plant */}
+        <Box args={[0.05, 0.3, 0.05]} position={[0, 0.3, 0]} castShadow>
+          <meshLambertMaterial color={COLORS.SAGE_GREEN} />
+        </Box>
+        {/* Leaves */}
+        {Array.from({ length: 4 }).map((_, i) => (
+          <Box
+            key={i}
+            args={[0.1, 0.02, 0.15]}
+            position={[
+              Math.cos((i * Math.PI) / 2) * 0.1,
+              0.35 + i * 0.05,
+              Math.sin((i * Math.PI) / 2) * 0.1,
+            ]}
+            rotation={[0, (i * Math.PI) / 2, Math.PI / 4]}
+            castShadow
           >
-            Experience & Skills
-          </Text>
-        </Billboard>
+            <meshLambertMaterial color={COLORS.SAGE_GREEN} />
+          </Box>
+        ))}
+      </group>
+
+      {/* Floating label */}
+      {hovered && (
+        <Text
+          position={[0, 3.8, 0]}
+          fontSize={0.3}
+          color={COLORS.DARK_GRAY}
+          anchorX="center"
+          anchorY="middle"
+        >
+          Experience & Skills
+        </Text>
       )}
     </group>
   );

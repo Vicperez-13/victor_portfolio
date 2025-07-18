@@ -13,9 +13,9 @@ export const COLORS = {
 
 // 3D Scene constants
 export const ROOM_SIZE = {
-  WIDTH: 8,
+  WIDTH: 8, // Increased from 7 to 8 for nightstand space
   HEIGHT: 6,
-  DEPTH: 8,
+  DEPTH: 9, // Keep same depth
 };
 
 // Interactive elements configuration

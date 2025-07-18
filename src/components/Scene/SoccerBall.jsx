@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Sphere, Text } from "@react-three/drei";
+import { Sphere, Text, Billboard } from "@react-three/drei";
 import { COLORS } from "../../utils/constants";
 import PersonalInterests from "../Content/PersonalInterests";
 
@@ -11,19 +11,15 @@ const SoccerBall = ({ position, openModal }) => {
 
   useFrame((state) => {
     if (ballRef.current) {
-      // Gentle floating animation
-      ballRef.current.position.y =
-        position[1] +
-        0.3 +
-        (hovered ? 0.2 : 0) +
-        Math.sin(state.clock.elapsedTime * 1.5) * 0.05;
+      // Static position - no animation when hovered
+      ballRef.current.position.y = position[1] + 0.3;
 
-      // Rotation animation
-      ballRef.current.rotation.x = rotation;
-      ballRef.current.rotation.z = rotation * 0.7;
-
-      if (hovered) {
-        setRotation(rotation + 0.02);
+      // Minimal rotation when not hovered
+      if (!hovered) {
+        ballRef.current.rotation.x =
+          Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
+        ballRef.current.rotation.z =
+          Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
       }
     }
   });
@@ -60,15 +56,16 @@ const SoccerBall = ({ position, openModal }) => {
 
       {/* Hover Indicator */}
       {hovered && (
-        <Text
-          position={[0, 1, 0]}
-          fontSize={0.2}
-          color={COLORS.CORAL_PINK}
-          anchorX="center"
-          anchorY="middle"
-        >
-          Click for Hobbies & Interests
-        </Text>
+        <Billboard position={[0, 1.5, 0]}>
+          <Text
+            fontSize={0.25}
+            color={COLORS.CORAL_PINK}
+            anchorX="center"
+            anchorY="middle"
+          >
+            Click for Hobbies & Interests
+          </Text>
+        </Billboard>
       )}
     </group>
   );

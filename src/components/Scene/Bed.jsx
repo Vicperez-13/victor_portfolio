@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Box, Text, Sphere } from "@react-three/drei";
+import { Box, Text, Sphere, Billboard } from "@react-three/drei";
 import { COLORS } from "../../utils/constants";
 import PersonalInterests from "../Content/PersonalInterests";
 
@@ -31,7 +31,7 @@ const Bed = ({ position, openModal }) => {
       style={{ cursor: hovered ? "pointer" : "auto" }}
     >
       {/* Bed frame */}
-      <Box args={[3, 0.4, 2]} position={[0, 0.2, 0]} castShadow receiveShadow>
+      <Box args={[3, 0.4, 3]} position={[0, 0.2, 0]} castShadow receiveShadow>
         <meshLambertMaterial
           color={hovered ? COLORS.CORAL_PINK : COLORS.BEIGE}
         />
@@ -39,7 +39,7 @@ const Bed = ({ position, openModal }) => {
 
       {/* Mattress */}
       <Box
-        args={[2.8, 0.3, 1.8]}
+        args={[2.8, 0.3, 2.8]}
         position={[0, 0.55, 0]}
         castShadow
         receiveShadow
@@ -62,10 +62,10 @@ const Bed = ({ position, openModal }) => {
         <meshLambertMaterial color={COLORS.CORAL_PINK} />
       </Box>
 
-      {/* Blanket */}
+      {/* Main Blanket */}
       <Box
         args={[2.6, 0.1, 1.6]}
-        position={[0, 0.75, 0.1]}
+        position={[0, 0.76, 0.1]}
         castShadow
         receiveShadow
         rotation={[0, 0, hovered ? 0.1 : 0]}
@@ -76,23 +76,23 @@ const Bed = ({ position, openModal }) => {
       </Box>
 
       {/* Blanket folds/wrinkles */}
-      <Box args={[0.3, 0.05, 0.8]} position={[-0.8, 0.8, 0.2]} castShadow>
+      <Box args={[0.3, 0.05, 0.8]} position={[-0.8, 0.81, 0.2]} castShadow>
         <meshLambertMaterial color={hovered ? COLORS.ORANGE : COLORS.BEIGE} />
       </Box>
-      <Box args={[0.4, 0.05, 0.6]} position={[0.7, 0.8, -0.1]} castShadow>
+      <Box args={[0.4, 0.05, 0.6]} position={[0.7, 0.81, -0.1]} castShadow>
         <meshLambertMaterial color={hovered ? COLORS.ORANGE : COLORS.BEIGE} />
       </Box>
-      <Box args={[0.8, 0.2, 0.4]} position={[0.6, 0.8, -0.5]} castShadow>
+      <Box args={[0.8, 0.2, 0.4]} position={[0.6, 0.81, -0.3]} castShadow>
         <meshLambertMaterial color={COLORS.SAGE_GREEN} />
       </Box>
 
-      {/* Blanket */}
-      <Box args={[2.5, 0.1, 1.5]} position={[0, 0.75, 0.2]} castShadow>
+      {/* Secondary Blanket Layer */}
+      <Box args={[2.5, 0.08, 1.5]} position={[0, 0.78, 0.2]} castShadow>
         <meshLambertMaterial color={COLORS.ORANGE} opacity={0.8} transparent />
       </Box>
 
-      {/* Nightstand */}
-      <group position={[2, 0, -0.5]}>
+      {/* Nightstand - Moved further to the right */}
+      <group position={[2.2, 0, -0.5]}>
         <Box args={[0.8, 0.6, 0.6]} position={[0, 0.3, 0]} castShadow>
           <meshLambertMaterial color={COLORS.BEIGE} />
         </Box>
@@ -154,15 +154,16 @@ const Bed = ({ position, openModal }) => {
 
       {/* Floating label */}
       {hovered && (
-        <Text
-          position={[0, 2.5, 0]}
-          fontSize={0.3}
-          color={COLORS.DARK_GRAY}
-          anchorX="center"
-          anchorY="middle"
-        >
-          Personal Interests
-        </Text>
+        <Billboard position={[0, 3, 0]}>
+          <Text
+            fontSize={0.35}
+            color={COLORS.DARK_GRAY}
+            anchorX="center"
+            anchorY="middle"
+          >
+            Personal Interests
+          </Text>
+        </Billboard>
       )}
     </group>
   );

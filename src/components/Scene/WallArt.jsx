@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Box, Text, Plane } from "@react-three/drei";
+import { Box, Text, Plane, Billboard } from "@react-three/drei";
 import { COLORS } from "../../utils/constants";
 import Achievements from "../Content/Achievements";
 
@@ -169,15 +169,16 @@ const WallArt = ({ position, openModal }) => {
 
       {/* Floating label */}
       {hovered && (
-        <Text
-          position={[0, -1.8, 0]}
-          fontSize={0.3}
-          color={COLORS.DARK_GRAY}
-          anchorX="center"
-          anchorY="middle"
-        >
-          Achievements & Awards
-        </Text>
+        <Billboard position={[0, -1.3, 0]}>
+          <Text
+            fontSize={0.35}
+            color={COLORS.DARK_GRAY}
+            anchorX="center"
+            anchorY="middle"
+          >
+            Achievements & Awards
+          </Text>
+        </Billboard>
       )}
     </group>
   );

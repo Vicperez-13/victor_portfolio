@@ -16,36 +16,60 @@ import "../../styles/components/Navigation.css";
 const Navigation = ({ onSectionClick }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState("en");
 
   const navigationItems = [
-    { id: "home", icon: Home, label: "Home", color: "var(--sage-green)", action: () => onSectionClick?.('home') },
-    { id: "about", icon: User, label: "About", color: "var(--coral-pink)", action: () => onSectionClick?.('about') },
-    { id: "projects", icon: Code, label: "Projects", color: "var(--orange)", action: () => onSectionClick?.('projects') },
+    {
+      id: "home",
+      icon: Home,
+      label: "Home",
+      color: "var(--sage-green)",
+      action: () => onSectionClick?.("home"),
+    },
+    {
+      id: "about",
+      icon: User,
+      label: "About",
+      color: "var(--coral-pink)",
+      action: () => onSectionClick?.("about"),
+    },
+    {
+      id: "projects",
+      icon: Code,
+      label: "Projects",
+      color: "var(--orange)",
+      action: () => onSectionClick?.("projects"),
+    },
     {
       id: "experience",
       icon: Briefcase,
       label: "Experience",
       color: "var(--beige)",
-      action: () => onSectionClick?.('experience')
+      action: () => onSectionClick?.("experience"),
     },
     {
       id: "interests",
       icon: Heart,
       label: "Interests",
       color: "var(--coral-pink)",
-      action: () => onSectionClick?.('interests')
+      action: () => onSectionClick?.("interests"),
     },
-    { id: "contact", icon: Mail, label: "Contact", color: "var(--orange)", action: () => onSectionClick?.('contact') },
+    {
+      id: "contact",
+      icon: Mail,
+      label: "Contact",
+      color: "var(--orange)",
+      action: () => onSectionClick?.("contact"),
+    },
   ];
 
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle("dark-mode");
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'es' : 'en');
+    setLanguage(language === "en" ? "es" : "en");
   };
 
   return (
@@ -90,7 +114,7 @@ const Navigation = ({ onSectionClick }) => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={item.action}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div
                   className="nav-icon"
@@ -118,7 +142,7 @@ const Navigation = ({ onSectionClick }) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleTheme}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <div className="control-icon">
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -129,7 +153,7 @@ const Navigation = ({ onSectionClick }) => {
               animate={{ opacity: isExpanded ? 1 : 0 }}
               transition={{ duration: 0.3 }}
             >
-              {isDarkMode ? 'Light' : 'Dark'}
+              {isDarkMode ? "Light" : "Dark"}
             </motion.span>
           </motion.div>
 
@@ -139,7 +163,7 @@ const Navigation = ({ onSectionClick }) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleLanguage}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <div className="control-icon">
               <Globe size={18} />

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
-import { Box, Text, Plane } from "@react-three/drei";
+import { Box, Text, Plane, Billboard } from "@react-three/drei";
 import { COLORS } from "../../utils/constants";
 import GitHubRepos from "../Content/GitHubRepos";
 
@@ -24,22 +24,24 @@ const Desk = ({ position, openModal }) => {
   const handlePaperClick = (e) => {
     e.stopPropagation();
     openModal(
-      <div style={{ padding: '20px', maxWidth: '600px' }}>
+      <div style={{ padding: "20px", maxWidth: "600px" }}>
         <h2>Victor's Life Story</h2>
         <p>
-          Born with a passion for technology and problem-solving, I discovered programming 
-          during my university years and haven't looked back since. My journey began with 
-          curious experimentation and evolved into a deep commitment to creating meaningful 
-          digital experiences.
+          Born with a passion for technology and problem-solving, I discovered
+          programming during my university years and haven't looked back since.
+          My journey began with curious experimentation and evolved into a deep
+          commitment to creating meaningful digital experiences.
         </p>
         <p>
-          Throughout my career, I've worked on diverse projects ranging from web applications 
-          to complex systems architecture. I believe in continuous learning, collaborative 
-          development, and the power of clean, efficient code to solve real-world problems.
+          Throughout my career, I've worked on diverse projects ranging from web
+          applications to complex systems architecture. I believe in continuous
+          learning, collaborative development, and the power of clean, efficient
+          code to solve real-world problems.
         </p>
         <p>
-          When I'm not coding, you'll find me exploring new technologies, contributing to 
-          open-source projects, or enjoying outdoor activities that keep me balanced and inspired.
+          When I'm not coding, you'll find me exploring new technologies,
+          contributing to open-source projects, or enjoying outdoor activities
+          that keep me balanced and inspired.
         </p>
       </div>
     );
@@ -78,14 +80,14 @@ const Desk = ({ position, openModal }) => {
         <meshLambertMaterial color={COLORS.DARK_GRAY} />
       </Box>
 
-      {/* Office Chair */}
-      <group position={[0, 0, 1.2]}>
+      {/* Office Chair - Moved to the other side of the desk */}
+      <group position={[0, 0, 1.2]} rotation={[0, 0, 0]}>
         {/* Chair Seat */}
         <Box args={[0.8, 0.1, 0.8]} position={[0, 0.5, 0]} castShadow>
           <meshLambertMaterial color={COLORS.DARK_GRAY} />
         </Box>
         {/* Chair Back */}
-        <Box args={[0.8, 0.8, 0.1]} position={[0, 0.9, -0.35]} castShadow>
+        <Box args={[0.8, 0.8, 0.1]} position={[0, 0.9, 0.35]} castShadow>
           <meshLambertMaterial color={COLORS.DARK_GRAY} />
         </Box>
         {/* Chair Base */}
@@ -98,10 +100,10 @@ const Desk = ({ position, openModal }) => {
       <Box args={[1.2, 0.8, 0.1]} position={[0, 1.2, -0.5]} castShadow>
         <meshLambertMaterial color={COLORS.DARK_GRAY} />
       </Box>
-      
+
       {/* Monitor Screen */}
       <Plane args={[1.0, 0.6]} position={[0, 1.2, -0.45]}>
-        <meshLambertMaterial 
+        <meshLambertMaterial
           color={hovered ? COLORS.SAGE_GREEN : "#000000"}
           emissive={hovered ? COLORS.SAGE_GREEN : "#000000"}
           emissiveIntensity={hovered ? 0.2 : 0}
@@ -119,9 +121,9 @@ const Desk = ({ position, openModal }) => {
       </Box>
 
       {/* Life Story Paper */}
-      <Plane 
-        args={[0.6, 0.8]} 
-        position={[-0.7, 0.82, 0.2]} 
+      <Plane
+        args={[0.6, 0.8]}
+        position={[-0.7, 0.82, 0.2]}
         rotation={[-Math.PI / 2, 0, 0.3]}
         onClick={handlePaperClick}
         onPointerEnter={() => setHovered(true)}
@@ -163,15 +165,16 @@ const Desk = ({ position, openModal }) => {
 
       {/* Hover Indicator */}
       {hovered && (
-        <Text
-          position={[0, 2, 0]}
-          fontSize={0.3}
-          color={COLORS.ORANGE}
-          anchorX="center"
-          anchorY="middle"
-        >
-          Click for GitHub Projects
-        </Text>
+        <Billboard position={[0, 2.5, 0]}>
+          <Text
+            fontSize={0.35}
+            color={COLORS.ORANGE}
+            anchorX="center"
+            anchorY="middle"
+          >
+            Click for GitHub Projects
+          </Text>
+        </Billboard>
       )}
     </group>
   );
