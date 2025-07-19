@@ -30,17 +30,17 @@ const Bed = ({ position, openModal }) => {
       onClick={handleClick}
       style={{ cursor: hovered ? "pointer" : "auto" }}
     >
-      {/* Bed frame */}
-      <Box args={[3, 0.4, 3]} position={[0, 0.2, 0]} castShadow receiveShadow>
+      {/* Bed frame - moved forward to align with headboard */}
+      <Box args={[3, 0.4, 3]} position={[0, 0.2, 0.6]} castShadow receiveShadow>
         <meshLambertMaterial
           color={hovered ? COLORS.CORAL_PINK : COLORS.BEIGE}
         />
       </Box>
 
-      {/* Mattress */}
+      {/* Mattress - moved forward to align with headboard */}
       <Box
         args={[2.8, 0.3, 2.8]}
-        position={[0, 0.55, 0]}
+        position={[0, 0.55, 0.6]}
         castShadow
         receiveShadow
       >
@@ -54,18 +54,18 @@ const Bed = ({ position, openModal }) => {
         />
       </Box>
 
-      {/* Pillows */}
-      <Box args={[0.8, 0.2, 0.4]} position={[-0.6, 0.8, -0.5]} castShadow>
-        <meshLambertMaterial color={COLORS.CORAL_PINK} />
+      {/* Pillows - positioned just in front of headboard with small gap */}
+      <Box args={[1.0, 0.25, 0.4]} position={[-0.6, 1.0, -0.3]} castShadow>
+        <meshLambertMaterial color={COLORS.SAGE_GREEN} />
       </Box>
-      <Box args={[0.8, 0.2, 0.4]} position={[0.6, 0.8, -0.5]} castShadow>
-        <meshLambertMaterial color={COLORS.CORAL_PINK} />
+      <Box args={[1.0, 0.25, 0.4]} position={[0.6, 1.0, -0.3]} castShadow>
+        <meshLambertMaterial color={COLORS.SAGE_GREEN} />
       </Box>
 
-      {/* Main Blanket */}
+      {/* Main Blanket - positioned on the properly aligned bed */}
       <Box
-        args={[2.6, 0.1, 1.6]}
-        position={[0, 0.76, 0.1]}
+        args={[2.6, 0.2, 1.6]}
+        position={[0, 0.8, 0.7]}
         castShadow
         receiveShadow
         rotation={[0, 0, hovered ? 0.1 : 0]}
@@ -75,19 +75,16 @@ const Bed = ({ position, openModal }) => {
         />
       </Box>
 
-      {/* Blanket folds/wrinkles */}
-      <Box args={[0.3, 0.05, 0.8]} position={[-0.8, 0.81, 0.2]} castShadow>
+      {/* Blanket folds/wrinkles - positioned on the properly aligned bed */}
+      <Box args={[0.3, 0.1, 0.8]} position={[-0.8, 0.91, 0.8]} castShadow>
         <meshLambertMaterial color={hovered ? COLORS.ORANGE : COLORS.BEIGE} />
       </Box>
-      <Box args={[0.4, 0.05, 0.6]} position={[0.7, 0.81, -0.1]} castShadow>
+      <Box args={[0.4, 0.1, 0.6]} position={[0.7, 0.91, 0.5]} castShadow>
         <meshLambertMaterial color={hovered ? COLORS.ORANGE : COLORS.BEIGE} />
-      </Box>
-      <Box args={[0.8, 0.2, 0.4]} position={[0.6, 0.81, -0.3]} castShadow>
-        <meshLambertMaterial color={COLORS.SAGE_GREEN} />
       </Box>
 
-      {/* Secondary Blanket Layer */}
-      <Box args={[2.5, 0.08, 1.5]} position={[0, 0.78, 0.2]} castShadow>
+      {/* Secondary Blanket Layer - positioned on the properly aligned bed */}
+      <Box args={[2.5, 0.15, 1.5]} position={[0, 0.95, 0.8]} castShadow>
         <meshLambertMaterial color={COLORS.ORANGE} opacity={0.8} transparent />
       </Box>
 
@@ -120,17 +117,6 @@ const Bed = ({ position, openModal }) => {
       </group>
 
       {/* Decorative items */}
-      {/* Guitar in corner */}
-      <group position={[-1.2, 0.7, -0.8]} rotation={[0, 0, Math.PI / 6]}>
-        {/* Guitar body */}
-        <Box args={[0.05, 0.8, 0.3]} position={[0, 0, 0]} castShadow>
-          <meshLambertMaterial color={COLORS.ORANGE} />
-        </Box>
-        {/* Guitar neck */}
-        <Box args={[0.03, 0.5, 0.05]} position={[0, 0.65, 0]} castShadow>
-          <meshLambertMaterial color={COLORS.BEIGE} />
-        </Box>
-      </group>
 
       {/* Floating orbs (representing hobbies) */}
       {hovered &&

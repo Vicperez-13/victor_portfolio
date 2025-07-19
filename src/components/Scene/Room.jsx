@@ -29,20 +29,20 @@ const Room = ({ openModal }) => {
 
   return (
     <group ref={roomRef}>
-      {/* Wooden Floor with thickness */}
+      {/* Wooden Floor with thickness - lowered to ground level */}
       <Box
         args={[ROOM_SIZE.WIDTH, 0.2, ROOM_SIZE.DEPTH]}
-        position={[0, -0.1, 0]}
+        position={[0, 0, 0]}
         receiveShadow
       >
         <meshLambertMaterial color="#8B4513" />
       </Box>
-      {/* Wood planks pattern - Adjusted for larger room */}
-      {Array.from({ length: 10 }, (_, i) => (
+      {/* Wood planks pattern - full coverage within house */}
+      {Array.from({ length: 11 }, (_, i) => (
         <Box
           key={i}
           args={[ROOM_SIZE.WIDTH, 0.01, 0.8]}
-          position={[0, 0.01, -4 + i * 0.8]}
+          position={[0, 0.11, -4 + i * 0.8]}
           receiveShadow
         >
           <meshLambertMaterial color="#A0522D" />
@@ -117,14 +117,14 @@ const Room = ({ openModal }) => {
         Victor's Portfolio
       </Text>
       {/* Interactive Elements - Properly organized room layout */}
-      {/* Desk against back wall on the left - moved further left */}
-      <Desk position={[-2.5, 0, -3.5]} openModal={openModal} />
+      {/* Desk against back wall on the left - moved further left and up from floor */}
+      <Desk position={[-2.5, 0.1, -3.5]} openModal={openModal} />
 
-      {/* Bookshelf wall-mounted on left wall - positioned for wider room */}
-      <Bookshelf position={[-3.85, 0, 0]} openModal={openModal} />
+      {/* Bookshelf wall-mounted on left wall - positioned for wider room and up from floor */}
+      <Bookshelf position={[-3.85, 0.1, 0]} openModal={openModal} />
 
-      {/* Bed moved to the left to create space for nightstand */}
-      <Bed position={[0.5, 0, -2.5]} openModal={openModal} />
+      {/* Bed moved to the left to create space for nightstand and pushed against back wall */}
+      <Bed position={[0.5, 0, -3.4]} openModal={openModal} />
 
       {/* Wall Art on back wall, centered */}
       <WallArt position={[0, 3, -4.3]} openModal={openModal} />
@@ -259,17 +259,368 @@ const Room = ({ openModal }) => {
         </group>
       </group>
 
-      {/* Plants component (hanging plant) on right side - now purely decorative */}
-      <Plants position={[2.5, 0, 2]} />
+      {/* Plants component (hanging plant) on right side - now purely decorative, raised from floor */}
+      <Plants position={[2.5, 0.1, 2]} />
 
       {/* Mailbox to the left of the house, aligned with front, facing forward - moved closer */}
       <Mailbox position={[-5, 0, 4.5]} openModal={openModal} />
 
-      {/* Street light to the right of the house - moved back and further right */}
-      <StreetLight position={[8, 0, 1]} />
+      {/* Street light to the right of the house - moved back and further right, raised above grass */}
+      <StreetLight position={[8, 0.2, 1]} />
 
-      {/* Soccer Ball in center area for easy access */}
-      <SoccerBall position={[0, 0, 1]} openModal={openModal} />
+      {/* Main sidewalk in front of the house - extended to match full grass coverage */}
+      <Box args={[24, 0.3, 4]} position={[0, 0.15, 7]} receiveShadow castShadow>
+        <meshLambertMaterial color="#888888" />
+      </Box>
+
+      {/* Sidewalk texture lines - multiple single lines lengthwise - extended */}
+      {Array.from({ length: 47 }, (_, i) => (
+        <Box
+          key={`length-${i}`}
+          args={[0.02, 0.31, 4]}
+          position={[-11.5 + i * 0.5, 0.15, 7]}
+          receiveShadow
+        >
+          <meshLambertMaterial color="#555555" />
+        </Box>
+      ))}
+
+      {/* Sidewalk texture lines - multiple single lines widthwise - extended */}
+      {Array.from({ length: 8 }, (_, i) => (
+        <Box
+          key={`width-${i}`}
+          args={[24, 0.31, 0.02]}
+          position={[0, 0.15, 5.2 + i * 0.6]}
+          receiveShadow
+        >
+          <meshLambertMaterial color="#555555" />
+        </Box>
+      ))}
+
+      {/* Clean grass box around house - extended to match sidewalk width */}
+      {/* Left grass strip - extended to cover full sidewalk width */}
+      <Box args={[8, 0.15, 20]} position={[-8, 0.075, 0]} receiveShadow>
+        <meshLambertMaterial color="#2a5a2a" />
+      </Box>
+
+      {/* Right grass strip - extended to cover street light area */}
+      <Box args={[8, 0.15, 20]} position={[8, 0.075, 0]} receiveShadow>
+        <meshLambertMaterial color="#2a5a2a" />
+      </Box>
+
+      {/* Front grass strip (between house and sidewalk) - extended width */}
+      <Box args={[12, 0.15, 2.5]} position={[0, 0.075, 5.75]} receiveShadow>
+        <meshLambertMaterial color="#2a5a2a" />
+      </Box>
+
+      {/* Back grass strip (behind house) - extended width */}
+      <Box args={[12, 0.15, 6]} position={[0, 0.075, -7.5]} receiveShadow>
+        <meshLambertMaterial color="#2a5a2a" />
+      </Box>
+
+      {/* Front grass area (beyond sidewalk) - extended to match sidewalk */}
+      <Box args={[24, 0.15, 4]} position={[0, 0.075, 11]} receiveShadow>
+        <meshLambertMaterial color="#2a5a2a" />
+      </Box>
+
+      {/* Little fence in front of sidewalk with lamps - extended to match grass and sidewalk */}
+      {Array.from({ length: 24 }, (_, i) => (
+        <group key={i} position={[-11.5 + i * 1, 0, 9.2]}>
+          {/* Fence post */}
+          <Box args={[0.1, 1.2, 0.1]} position={[0, 0.6, 0]} castShadow>
+            <meshLambertMaterial color="#8B4513" />
+          </Box>
+          {/* Fence rail */}
+          {i < 23 && (
+            <Box args={[1, 0.1, 0.1]} position={[0.5, 0.8, 0]} castShadow>
+              <meshLambertMaterial color="#8B4513" />
+            </Box>
+          )}
+          {/* Little lamp on top of post */}
+          <group position={[0, 1.3, 0]}>
+            {/* Lamp base */}
+            <Box args={[0.15, 0.1, 0.15]} position={[0, 0, 0]} castShadow>
+              <meshLambertMaterial color="#2C2C2C" />
+            </Box>
+            {/* Lamp bulb */}
+            <Box args={[0.12, 0.15, 0.12]} position={[0, 0.125, 0]} castShadow>
+              <meshLambertMaterial
+                color="#FFF8DC"
+                emissive="#FFE135"
+                emissiveIntensity={0.3}
+              />
+            </Box>
+            {/* Lamp cap */}
+            <Box args={[0.18, 0.08, 0.18]} position={[0, 0.24, 0]} castShadow>
+              <meshLambertMaterial color="#2C2C2C" />
+            </Box>
+          </group>
+        </group>
+      ))}
+
+      {/* Soccer Ball in center area for easy access - raised from floor */}
+      <SoccerBall position={[0, 0.1, 1]} openModal={openModal} />
+
+      {/* Pine Bushes - More bushy and further away */}
+      {/* First Pine Bush */}
+      <group position={[-8, 0, 2]}>
+        {/* Bush trunk/stem */}
+        <Box
+          args={[0.25, 1.2, 0.25]}
+          position={[0, 0.6, 0]}
+          castShadow
+          receiveShadow
+        >
+          <meshLambertMaterial color="#8B4513" />
+        </Box>
+
+        {/* Bottom pine layer - multiple sections for bushiness */}
+        <group position={[0, 1, 0]}>
+          <Box
+            args={[1.8, 0.3, 1.8]}
+            position={[0, 0, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[1.6, 0.3, 1.6]}
+            position={[0, 0.1, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+          {/* Additional bushy sections */}
+          <Box
+            args={[1.3, 0.25, 1.3]}
+            position={[0.4, 0.05, 0.3]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[1.1, 0.25, 1.1]}
+            position={[-0.3, 0.05, -0.2]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+        </group>
+
+        {/* Middle pine layer */}
+        <group position={[0, 1.6, 0]}>
+          <Box
+            args={[1.3, 0.25, 1.3]}
+            position={[0, 0, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[1.1, 0.25, 1.1]}
+            position={[0, 0.05, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+          <Box
+            args={[0.9, 0.2, 0.9]}
+            position={[0.2, 0.05, 0.2]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+        </group>
+
+        {/* Top pine layer */}
+        <group position={[0, 2.1, 0]}>
+          <Box
+            args={[0.9, 0.2, 0.9]}
+            position={[0, 0, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[0.7, 0.2, 0.7]}
+            position={[0, 0.05, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+        </group>
+
+        {/* Bush tip */}
+        <Box
+          args={[0.5, 0.4, 0.5]}
+          position={[0, 2.6, 0]}
+          castShadow
+          receiveShadow
+        >
+          <meshLambertMaterial color="#228B22" />
+        </Box>
+      </group>
+
+      {/* Second Pine Bush */}
+      <group position={[-9.5, 0, 0.5]}>
+        {/* Bush trunk/stem */}
+        <Box
+          args={[0.2, 1, 0.2]}
+          position={[0, 0.5, 0]}
+          castShadow
+          receiveShadow
+        >
+          <meshLambertMaterial color="#8B4513" />
+        </Box>
+
+        {/* Bottom pine layer */}
+        <group position={[0, 0.9, 0]}>
+          <Box
+            args={[1.5, 0.25, 1.5]}
+            position={[0, 0, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[1.3, 0.25, 1.3]}
+            position={[0, 0.05, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+          {/* Additional bushy sections */}
+          <Box
+            args={[1.0, 0.2, 1.0]}
+            position={[0.3, 0.05, 0.2]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[0.9, 0.2, 0.9]}
+            position={[-0.2, 0.05, -0.3]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+        </group>
+
+        {/* Top pine layer */}
+        <group position={[0, 1.4, 0]}>
+          <Box
+            args={[1.0, 0.2, 1.0]}
+            position={[0, 0, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[0.8, 0.2, 0.8]}
+            position={[0, 0.05, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+        </group>
+
+        {/* Bush tip */}
+        <Box
+          args={[0.5, 0.3, 0.5]}
+          position={[0, 1.8, 0]}
+          castShadow
+          receiveShadow
+        >
+          <meshLambertMaterial color="#228B22" />
+        </Box>
+      </group>
+
+      {/* Extended grass area behind the house */}
+      {/* This is now covered by the main grass area above */}
+
+      {/* Pine Tree behind the house */}
+      <group position={[-2, 0, -8]}>
+        {/* Tree trunk */}
+        <Box args={[0.4, 4, 0.4]} position={[0, 2, 0]} castShadow receiveShadow>
+          <meshLambertMaterial color="#8B4513" />
+        </Box>
+
+        {/* Pine tree layers - bottom (largest) */}
+        <group position={[0, 3, 0]}>
+          <Box args={[3, 0.3, 3]} position={[0, 0, 0]} castShadow receiveShadow>
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[2.8, 0.3, 2.8]}
+            position={[0, 0.1, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+        </group>
+
+        {/* Pine tree layers - middle */}
+        <group position={[0, 4, 0]}>
+          <Box
+            args={[2.5, 0.3, 2.5]}
+            position={[0, 0, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[2.3, 0.3, 2.3]}
+            position={[0, 0.1, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+        </group>
+
+        {/* Pine tree layers - top */}
+        <group position={[0, 5, 0]}>
+          <Box args={[2, 0.3, 2]} position={[0, 0, 0]} castShadow receiveShadow>
+            <meshLambertMaterial color="#0F5132" />
+          </Box>
+          <Box
+            args={[1.8, 0.3, 1.8]}
+            position={[0, 0.1, 0]}
+            castShadow
+            receiveShadow
+          >
+            <meshLambertMaterial color="#228B22" />
+          </Box>
+        </group>
+
+        {/* Pine tree tip */}
+        <Box
+          args={[1.2, 0.8, 1.2]}
+          position={[0, 6, 0]}
+          castShadow
+          receiveShadow
+        >
+          <meshLambertMaterial color="#228B22" />
+        </Box>
+      </group>
+
       {/* Additional decorative elements */}
       {/* Rug - Adjusted for larger room */}
       <Plane
