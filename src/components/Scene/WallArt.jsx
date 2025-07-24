@@ -9,9 +9,7 @@ const WallArt = ({ position, openModal }) => {
   const [hovered, setHovered] = useState(false);
 
   useFrame((state) => {
-    if (artRef.current) {
-      artRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 2) * 0.02;
-    }
+    // Animation removed - picture frame now stays static
   });
 
   const handleClick = () => {
@@ -167,14 +165,17 @@ const WallArt = ({ position, openModal }) => {
           </Box>
         ))}
 
-      {/* Floating label */}
+      {/* Floating label - white, open, always faces camera, fully visible */}
       {hovered && (
-        <Billboard position={[0, -1.3, 0]}>
+        <Billboard position={[0, 1.3, 0.2]}>
           <Text
-            fontSize={0.35}
-            color={COLORS.DARK_GRAY}
+            fontSize={0.38}
+            color="#fff"
             anchorX="center"
             anchorY="middle"
+            outlineWidth={0.01}
+            outlineColor="#222"
+            fontWeight={700}
           >
             Achievements & Awards
           </Text>

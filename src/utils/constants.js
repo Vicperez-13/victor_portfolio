@@ -51,16 +51,16 @@ export const INTERACTIVE_ELEMENTS = {
 export const PERSONAL_INFO = {
   name: "Victor Perez",
   title: "Full Stack Developer",
-  email: "victor@example.com",
-  location: "Your Location",
+  email: "vp5662021@gmail.com",
+  location: "Okanogan, WA",
   bio: "Passionate developer creating innovative web solutions",
 
   // Social links
   social: {
     github: "https://github.com/Vicperez-13",
-    linkedin: "https://linkedin.com/in/yourprofile",
-    twitter: "https://twitter.com/yourhandle",
-    website: "https://yourwebsite.com",
+    linkedin:
+      "https://www.linkedin.com/in/vicperez13?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2TglD1mQRC%2BCn4Tuqt7tuQ%3D%3D",
+    instagram: "https://instagram.com/vic.perez13",
   },
 
   // Skills categories

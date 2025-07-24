@@ -12,22 +12,44 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
+  background: transparent;
+  border-radius: 50%;
   padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   pointer-events: auto;
   transition: all 0.3s ease;
   width: 60px;
+  height: 60px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .main-navigation.expanded {
+  background: linear-gradient(
+    135deg,
+    rgba(12, 12, 31, 0.95) 0%,
+    rgba(26, 26, 46, 0.95) 25%,
+    rgba(22, 33, 62, 0.95) 50%,
+    rgba(15, 52, 96, 0.95) 75%,
+    rgba(14, 65, 102, 0.95) 100%
+  );
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   width: 200px;
+  height: auto;
+  padding: 20px;
+  display: block;
 }
 
 .nav-header {
+  margin-bottom: 0;
+  transition: margin-bottom 0.3s ease;
+}
+
+.main-navigation.expanded .nav-header {
   margin-bottom: 20px;
 }
 
@@ -45,10 +67,50 @@
   cursor: pointer;
 }
 
+.nav-title {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #b8c6db;
+  text-shadow: 0 0 10px rgba(184, 198, 219, 0.5);
+  position: absolute;
+}
+
+.main-navigation.expanded .nav-title {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+}
+
 .nav-items {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  position: absolute;
+}
+
+.main-navigation.expanded .nav-items {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
+}
+
+.nav-controls {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  position: absolute;
+}
+
+.main-navigation.expanded .nav-controls {
+  opacity: 1;
+  visibility: visible;
+  position: relative;
 }
 
 .nav-item {
@@ -61,7 +123,8 @@
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: var(--dark-gray);
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   white-space: nowrap;
   width: 100%;
   justify-content: flex-start;
@@ -69,6 +132,8 @@
 
 .nav-item:hover {
   transform: translateX(4px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(135, 206, 235, 0.3);
 }
 
 .nav-label {
@@ -93,23 +158,33 @@
 .control-button {
   width: 48px;
   height: 48px;
-  background: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(
+    135deg,
+    rgba(12, 12, 31, 0.9) 0%,
+    rgba(22, 33, 62, 0.9) 50%,
+    rgba(14, 65, 102, 0.9) 100%
+  );
   backdrop-filter: blur(10px);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #ffffff;
   cursor: pointer;
-  color: var(--dark-gray);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .control-button:hover {
-  background: var(--sage-green);
-  color: white;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(
+    135deg,
+    rgba(22, 33, 62, 0.95) 0%,
+    rgba(15, 52, 96, 0.95) 50%,
+    rgba(14, 65, 102, 0.95) 100%
+  );
+  box-shadow: 0 0 15px rgba(135, 206, 235, 0.4);
+  transform: translateY(-2px);
 }
 
 .instructions {
@@ -117,13 +192,21 @@
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
+  background: linear-gradient(
+    135deg,
+    rgba(12, 12, 31, 0.9) 0%,
+    rgba(22, 33, 62, 0.9) 50%,
+    rgba(14, 65, 102, 0.9) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   padding: 12px 24px;
   border-radius: 24px;
   font-size: 0.9rem;
   pointer-events: auto;
   backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .instructions p {

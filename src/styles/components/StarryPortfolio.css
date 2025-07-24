@@ -1,0 +1,138 @@
+.portfolio-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.portfolio-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      1px 1px at 5% 10%,
+      rgba(255, 255, 255, 0.8),
+      transparent
+    ),
+    radial-gradient(1px 1px at 15% 25%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 25% 5%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 35% 30%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 45% 15%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 55% 35%, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(1px 1px at 65% 8%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(1px 1px at 75% 28%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 85% 12%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 95% 32%, rgba(255, 255, 255, 0.6), transparent);
+  pointer-events: none;
+  z-index: 1;
+  animation: twinkle 10s ease-in-out infinite;
+}
+
+.portfolio-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(
+      1px 1px at 10% 20%,
+      rgba(135, 206, 235, 0.6),
+      transparent
+    ),
+    radial-gradient(1px 1px at 30% 40%, rgba(135, 206, 235, 0.4), transparent),
+    radial-gradient(1px 1px at 50% 15%, rgba(135, 206, 235, 0.7), transparent),
+    radial-gradient(1px 1px at 70% 35%, rgba(135, 206, 235, 0.5), transparent),
+    radial-gradient(1px 1px at 90% 25%, rgba(135, 206, 235, 0.6), transparent);
+  pointer-events: none;
+  z-index: 1;
+  animation: twinkle 12s ease-in-out infinite reverse;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .portfolio-container {
+    /* Improve touch scrolling and prevent overscroll */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+
+  /* Reduce animation complexity on mobile for better performance */
+  .portfolio-container::before,
+  .portfolio-container::after {
+    animation-duration: 15s; /* Slower animations for better performance */
+  }
+
+  /* Simplify star patterns on mobile */
+  .portfolio-container::before {
+    background-image: radial-gradient(
+        1px 1px at 15% 25%,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(1px 1px at 45% 15%, rgba(255, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 75% 35%, rgba(255, 255, 255, 0.9), transparent);
+  }
+
+  .portfolio-container::after {
+    background-image: radial-gradient(
+        1px 1px at 30% 40%,
+        rgba(135, 206, 235, 0.6),
+        transparent
+      ),
+      radial-gradient(1px 1px at 70% 15%, rgba(135, 206, 235, 0.5), transparent);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce complexity for smaller screens */
+  .portfolio-container::before {
+    background-image: radial-gradient(
+        1px 1px at 25% 25%,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(1px 1px at 75% 75%, rgba(255, 255, 255, 0.6), transparent);
+  }
+
+  .portfolio-container::after {
+    background-image: radial-gradient(
+      1px 1px at 50% 50%,
+      rgba(135, 206, 235, 0.5),
+      transparent
+    );
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  /* This targets touch devices specifically */
+  .portfolio-container {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .portfolio-container {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  }
+}

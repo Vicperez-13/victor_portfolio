@@ -71,3 +71,63 @@ body {
     font-size: 12px;
   }
 }
+
+/* Mobile-specific optimizations */
+@media (max-width: 1024px) {
+  body {
+    /* Prevent zoom on input focus on mobile */
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    /* Improve touch scrolling */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+  }
+
+  /* Better touch targets */
+  button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px; /* Keep readable on small screens */
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* This targets touch devices specifically */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+
+  /* Ensure touch targets are large enough */
+  button,
+  [role="button"],
+  a,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+}
+
+/* Orientation-specific adjustments */
+@media (orientation: landscape) and (max-height: 500px) {
+  /* Landscape phone optimization */
+  #root {
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height */
+  }
+}

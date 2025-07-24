@@ -32,25 +32,18 @@ const PersonalInterests = () => {
       icon: <Camera size={24} />,
     },
     {
-      name: "Music Production",
+      name: "Snowboarding",
       description:
-        "Creating electronic music and experimenting with sound design",
+        "Riding powder and carving lines in the mountains whenever possible",
       color: "var(--sage-green)",
-      icon: <Music size={24} />,
+      icon: <Mountain size={24} />,
     },
     {
-      name: "Travel",
+      name: "Bouldering",
       description:
-        "Exploring new cultures and discovering hidden gems around the world",
+        "Climbing indoors and outdoors, pushing limits and solving problems",
       color: "var(--orange)",
-      icon: <Plane size={24} />,
-    },
-    {
-      name: "Gaming",
-      description:
-        "Strategy games, indie titles, and occasional competitive gaming",
-      color: "var(--beige)",
-      icon: <Gamepad2 size={24} />,
+      icon: <Mountain size={24} />,
     },
     {
       name: "Reading",
@@ -58,6 +51,13 @@ const PersonalInterests = () => {
         "Sci-fi novels, tech books, and philosophy - always learning something new",
       color: "var(--coral-pink)",
       icon: <Book size={24} />,
+    },
+    {
+      name: "Cooking & Eating",
+      description:
+        "Experimenting in the kitchen, sharing meals, and exploring new cuisines",
+      color: "var(--beige)",
+      icon: <Coffee size={24} />,
     },
     {
       name: "Hiking",
@@ -70,27 +70,22 @@ const PersonalInterests = () => {
 
   const personalProjects = [
     {
-      title: "Daily Photography Challenge",
+      title: "Building a Bathroom",
       description:
-        "Taking and editing one photo every day to improve composition skills",
-      status: "Ongoing",
-      color: "var(--coral-pink)",
-    },
-    {
-      title: "Ambient Music Album",
-      description:
-        "Working on a collection of ambient tracks inspired by nature sounds",
+        "DIY home improvement: designing and constructing a new bathroom from scratch",
       status: "In Progress",
       color: "var(--sage-green)",
     },
     {
-      title: "Travel Blog",
+      title: "YouTube Channel: @Vickipoolearns",
       description:
-        "Documenting adventures and sharing travel tips with fellow wanderers",
+        "Creating videos to share what I learn, from tech to travel and DIY projects",
       status: "Active",
-      color: "var(--orange)",
+      color: "var(--coral-pink)",
     },
   ];
+
+  const [saberHover, setSaberHover] = React.useState(false);
 
   return (
     <div className="personal-interests">
@@ -195,7 +190,7 @@ const PersonalInterests = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
       >
-        <h2>2024 Goals</h2>
+        <h2>2025 Goals</h2>
         <div className="goals-grid">
           <motion.div
             className="goal-card"
@@ -203,11 +198,11 @@ const PersonalInterests = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.9 }}
           >
-            <Camera className="goal-icon" />
-            <h3>Photography Exhibition</h3>
+            <Mountain className="goal-icon" />
+            <h3>One-Handed Handstand</h3>
             <p>
-              Organize a local exhibition showcasing landscape photography from
-              recent travels
+              Train and learn how to do a one-handed handstand—balance,
+              strength, and persistence!
             </p>
           </motion.div>
 
@@ -217,11 +212,11 @@ const PersonalInterests = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 1 }}
           >
-            <Music className="goal-icon" />
-            <h3>Music Release</h3>
+            <Book className="goal-icon" />
+            <h3>Find a Software Engineering Job</h3>
             <p>
-              Complete and release my first ambient music album on streaming
-              platforms
+              Land a software engineering position and grow as a developer in a
+              collaborative team.
             </p>
           </motion.div>
 
@@ -231,9 +226,12 @@ const PersonalInterests = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 1.1 }}
           >
-            <Mountain className="goal-icon" />
-            <h3>Adventure Challenge</h3>
-            <p>Complete a multi-day hiking expedition in the mountains</p>
+            <Heart className="goal-icon" />
+            <h3>Learn as Much as Possible</h3>
+            <p>
+              Stay curious, keep learning, and never be afraid to try something
+              new—growth through experience!
+            </p>
           </motion.div>
         </div>
       </motion.div>
@@ -252,41 +250,97 @@ const PersonalInterests = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 1.1 }}
           >
-            <span className="fact-emoji">📸</span>
-            <p>I've taken over 10,000 photos in the past year</p>
+            <span className="fact-emoji">⚽</span>
+            <p>College soccer player</p>
           </motion.div>
-
           <motion.div
             className="fact-item"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 1.2 }}
           >
-            <span className="fact-emoji">🎵</span>
-            <p>
-              My music playlist has over 50 hours of ambient and electronic
-              music
-            </p>
+            <span className="fact-emoji">☕</span>
+            <p>Coffee connoisseur</p>
           </motion.div>
-
           <motion.div
             className="fact-item"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 1.3 }}
           >
-            <span className="fact-emoji">☕</span>
-            <p>I've tried coffee from 15 different countries</p>
+            <span className="fact-emoji">🏂</span>
+            <p>Snowboarding instructor</p>
           </motion.div>
-
           <motion.div
             className="fact-item"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4, delay: 1.4 }}
           >
-            <span className="fact-emoji">🏔️</span>
-            <p>Highest peak climbed: 3,200 meters above sea level</p>
+            <span className="fact-emoji">🌍</span>
+            <p>Learning Arabic</p>
+          </motion.div>
+          <motion.div
+            className="fact-item"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, delay: 1.5 }}
+          >
+            <span
+              className="lightsaber-wrapper"
+              onMouseEnter={() => setSaberHover(true)}
+              onMouseLeave={() => setSaberHover(false)}
+              style={{ display: "inline-block", verticalAlign: "middle" }}
+            >
+              {/* SVG Lightsaber */}
+              <svg
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                style={{ verticalAlign: "middle" }}
+              >
+                {/* Hilt */}
+                <rect
+                  x="13"
+                  y="20"
+                  width="6"
+                  height="8"
+                  rx="2"
+                  fill="#222"
+                  stroke="#888"
+                  strokeWidth="1"
+                />
+                {/* Blade */}
+                <rect
+                  x="15"
+                  y="4"
+                  width="2"
+                  height="16"
+                  rx="1"
+                  fill={saberHover ? "#ff2a2a" : "#3ec6ff"}
+                  style={{
+                    filter: saberHover
+                      ? "drop-shadow(0 0 8px #ff2a2a)"
+                      : "drop-shadow(0 0 8px #3ec6ff)",
+                  }}
+                />
+              </svg>
+            </span>
+            <p style={{ display: "inline", marginLeft: 8 }}>Undercover nerd</p>
+            {saberHover && (
+              <div
+                className="starwars-quote"
+                style={{
+                  color: "#ff2a2a",
+                  fontWeight: "bold",
+                  marginTop: 8,
+                  fontFamily: "monospace",
+                  textShadow: "0 0 8px #ff2a2a",
+                }}
+              >
+                "You don't know the power of the dark side."
+              </div>
+            )}
           </motion.div>
         </div>
       </motion.div>

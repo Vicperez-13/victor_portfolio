@@ -133,19 +133,23 @@ const Desk = ({ position, openModal }) => {
         <meshLambertMaterial color={COLORS.WHITE} />
       </Plane>
 
-      {/* Paper Text */}
-      <Text
-        position={[-0.7, 0.83, 0.2]}
-        rotation={[-Math.PI / 2, 0, 0.3]}
-        fontSize={0.08}
-        color={COLORS.TEXT_DARK}
-        anchorX="center"
-        anchorY="middle"
-        onClick={handlePaperClick}
-        style={{ cursor: "pointer" }}
-      >
-        My Life Story
-      </Text>
+      {/* Paper Text - white, open, always faces camera */}
+      {hovered && (
+        <Billboard position={[-0.7, 1.2, 0.25]}>
+          <Text
+            fontSize={0.18}
+            color="#fff"
+            anchorX="center"
+            anchorY="middle"
+            outlineWidth={0.01}
+            outlineColor="#222"
+            fontWeight={700}
+            style={{ cursor: "pointer" }}
+          >
+            My Life Story
+          </Text>
+        </Billboard>
+      )}
 
       {/* Desk Lamp */}
       <group position={[1, 0.8, -0.3]}>
@@ -163,14 +167,17 @@ const Desk = ({ position, openModal }) => {
         </Box>
       </group>
 
-      {/* Hover Indicator */}
+      {/* Hover Indicator - white, open, always faces camera */}
       {hovered && (
-        <Billboard position={[0, 2.5, 0]}>
+        <Billboard position={[0, 2.7, 0]}>
           <Text
-            fontSize={0.35}
-            color={COLORS.ORANGE}
+            fontSize={0.38}
+            color="#fff"
             anchorX="center"
             anchorY="middle"
+            outlineWidth={0.01}
+            outlineColor="#222"
+            fontWeight={700}
           >
             Click for GitHub Projects
           </Text>

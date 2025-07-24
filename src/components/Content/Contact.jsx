@@ -60,18 +60,11 @@ const Contact = () => {
       description: "Connect with me professionally",
     },
     {
-      name: "Twitter",
-      icon: <Twitter size={24} />,
-      url: PERSONAL_INFO.social.twitter,
-      color: "#1DA1F2",
-      description: "Follow my tech thoughts and updates",
-    },
-    {
-      name: "Website",
-      icon: <Globe size={24} />,
-      url: PERSONAL_INFO.social.website,
-      color: "var(--sage-green)",
-      description: "Visit my personal website",
+      name: "Instagram",
+      icon: <MessageSquare size={24} />,
+      url: PERSONAL_INFO.social.instagram,
+      color: "#E1306C",
+      description: "Follow me on Instagram",
     },
   ];
 
@@ -91,9 +84,10 @@ const Contact = () => {
     },
     {
       icon: <MessageSquare size={24} />,
-      label: "Response Time",
-      value: "Usually within 24 hours",
-      color: "var(--orange)",
+      label: "Instagram",
+      value: "vic.perez13",
+      href: "https://instagram.com/vic.perez13",
+      color: "#E1306C",
     },
   ];
 

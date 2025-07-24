@@ -12,44 +12,60 @@ const LoadingScreen = () => {
         transition={{ duration: 0.8 }}
       >
         <motion.div
-          className="loading-logo"
-          initial={{ scale: 0.8 }}
-          animate={{ scale: 1 }}
+          className="loading-spinner"
+          animate={{ rotate: 360 }}
           transition={{
-            duration: 2,
+            duration: 1,
             repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
+            ease: "linear",
           }}
         >
-          <div className="logo-circle"></div>
-          <div className="logo-text">VP</div>
+          <div className="spinner-ring"></div>
         </motion.div>
 
         <motion.h1
           className="loading-title"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
         >
-          Victor's Portfolio
+          App Loading
         </motion.h1>
 
         <motion.p
           className="loading-subtitle"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
         >
-          Loading 3D Experience...
+          Preparing 3D Experience...
         </motion.p>
 
         <motion.div
-          className="loading-bar"
-          initial={{ width: 0 }}
-          animate={{ width: "100%" }}
-          transition={{ delay: 1, duration: 2, ease: "easeInOut" }}
-        />
+          className="loading-dots"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9, duration: 0.8 }}
+        >
+          <motion.span
+            animate={{ opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 1.5, repeat: Infinity, delay: 0 }}
+          >
+            •
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+          >
+            •
+          </motion.span>
+          <motion.span
+            animate={{ opacity: [0.3, 1, 0.3] }}
+            transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
+          >
+            •
+          </motion.span>
+        </motion.div>
       </motion.div>
     </div>
   );

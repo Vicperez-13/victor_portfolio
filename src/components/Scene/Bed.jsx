@@ -138,16 +138,19 @@ const Bed = ({ position, openModal }) => {
           </Sphere>
         ))}
 
-      {/* Floating label */}
+      {/* Floating label for Professional Experience & Skills - hover over bed */}
       {hovered && (
-        <Billboard position={[0, 3, 0]}>
+        <Billboard position={[0, 4.2, 0]}>
           <Text
-            fontSize={0.35}
-            color={COLORS.DARK_GRAY}
+            fontSize={0.5}
+            color="#fff"
             anchorX="center"
             anchorY="middle"
+            outlineWidth={0.03}
+            outlineColor="#222"
+            fontWeight={700}
           >
-            Personal Interests
+            Professional Experience & Skills
           </Text>
         </Billboard>
       )}

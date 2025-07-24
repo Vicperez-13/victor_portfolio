@@ -13,39 +13,71 @@ import {
 } from "lucide-react";
 import "../../styles/components/Navigation.css";
 
-const Navigation = ({ onSectionClick }) => {
+const Navigation = ({ onSectionClick, isMobile = false }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [language, setLanguage] = useState('en');
+  const [isMuted, setIsMuted] = useState(false);
+  const [language, setLanguage] = useState("en");
 
   const navigationItems = [
-    { id: "home", icon: Home, label: "Home", color: "var(--sage-green)", action: () => onSectionClick?.('home') },
-    { id: "about", icon: User, label: "About", color: "var(--coral-pink)", action: () => onSectionClick?.('about') },
-    { id: "projects", icon: Code, label: "Projects", color: "var(--orange)", action: () => onSectionClick?.('projects') },
+    {
+      id: "about",
+      icon: User,
+      label: "About",
+      color: "var(--coral-pink)",
+      action: () => {
+        onSectionClick?.("about");
+        if (isMobile) setIsExpanded(false);
+      },
+    },
+    {
+      id: "projects",
+      icon: Code,
+      label: "Projects",
+      color: "var(--orange)",
+      action: () => {
+        onSectionClick?.("projects");
+        if (isMobile) setIsExpanded(false);
+      },
+    },
     {
       id: "experience",
       icon: Briefcase,
       label: "Experience",
       color: "var(--beige)",
-      action: () => onSectionClick?.('experience')
+      action: () => {
+        onSectionClick?.("experience");
+        if (isMobile) setIsExpanded(false);
+      },
     },
     {
       id: "interests",
       icon: Heart,
       label: "Interests",
       color: "var(--coral-pink)",
-      action: () => onSectionClick?.('interests')
+      action: () => {
+        onSectionClick?.("interests");
+        if (isMobile) setIsExpanded(false);
+      },
     },
-    { id: "contact", icon: Mail, label: "Contact", color: "var(--orange)", action: () => onSectionClick?.('contact') },
+    {
+      id: "contact",
+      icon: Mail,
+      label: "Contact",
+      color: "var(--orange)",
+      action: () => {
+        onSectionClick?.("contact");
+        if (isMobile) setIsExpanded(false);
+      },
+    },
   ];
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('dark-mode');
+  const toggleMute = () => {
+    setIsMuted(!isMuted);
+    // Later: connect to theme song audio logic
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === 'en' ? 'es' : 'en');
+    setLanguage(language === "en" ? "es" : "en");
   };
 
   return (
@@ -90,7 +122,7 @@ const Navigation = ({ onSectionClick }) => {
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={item.action}
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: "pointer" }}
               >
                 <div
                   className="nav-icon"
@@ -112,16 +144,46 @@ const Navigation = ({ onSectionClick }) => {
         </div>
 
         <div className="nav-controls">
-          {/* Theme Toggle */}
+          {/* Mute Button */}
           <motion.div
             className="control-item"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
-            onClick={toggleTheme}
-            style={{ cursor: 'pointer' }}
+            onClick={toggleMute}
+            style={{ cursor: "pointer" }}
           >
             <div className="control-icon">
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {isMuted ? (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+              ) : (
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a9 9 0 0 1 0 14.14"></path>
+                </svg>
+              )}
             </div>
             <motion.span
               className="control-label"
@@ -129,7 +191,7 @@ const Navigation = ({ onSectionClick }) => {
               animate={{ opacity: isExpanded ? 1 : 0 }}
               transition={{ duration: 0.3 }}
             >
-              {isDarkMode ? 'Light' : 'Dark'}
+              {isMuted ? "Muted" : "Sound"}
             </motion.span>
           </motion.div>
 
@@ -139,7 +201,7 @@ const Navigation = ({ onSectionClick }) => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleLanguage}
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: "pointer" }}
           >
             <div className="control-icon">
               <Globe size={18} />

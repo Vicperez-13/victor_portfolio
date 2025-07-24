@@ -9,11 +9,12 @@ import Plants from "./Plants";
 import SoccerBall from "./SoccerBall";
 import Mailbox from "./Mailbox";
 import StreetLight from "./StreetLight";
+import LightSwitch from "./LightSwitch";
 import Achievements from "../Content/Achievements";
 import Contact from "../Content/Contact";
 import { COLORS, ROOM_SIZE } from "../../utils/constants";
 
-const Room = ({ openModal }) => {
+const Room = ({ openModal, lightsOn, setLightsOn }) => {
   const roomRef = useRef();
   const floorRef = useRef();
 
@@ -26,6 +27,10 @@ const Room = ({ openModal }) => {
         Math.sin(state.clock.elapsedTime * 0.1) * 0.02;
     }
   });
+
+  const toggleLights = () => {
+    setLightsOn(!lightsOn);
+  };
 
   return (
     <group ref={roomRef}>
@@ -106,6 +111,23 @@ const Room = ({ openModal }) => {
       >
         <meshLambertMaterial color={COLORS.WHITE} opacity={0.7} transparent />
       </Plane>
+
+      {/* Ceiling Light Fixture */}
+      <group position={[0, ROOM_SIZE.HEIGHT - 0.3, 0]}>
+        {/* Light fixture base/mount */}
+        <Box args={[0.3, 0.1, 0.3]} position={[0, 0, 0]} castShadow>
+          <meshLambertMaterial color={COLORS.DARK_GRAY} />
+        </Box>
+
+        {/* Light bulb/shade */}
+        <Box args={[0.8, 0.2, 0.8]} position={[0, -0.15, 0]} castShadow>
+          <meshLambertMaterial
+            color={lightsOn ? "#FFF8DC" : "#B0B0B0"}
+            emissive={lightsOn ? "#FFFF99" : "#000000"}
+            emissiveIntensity={lightsOn ? 0.3 : 0}
+          />
+        </Box>
+      </group>
       {/* Room Title */}
       <Text
         position={[0, 7, -5.8]}
@@ -120,14 +142,21 @@ const Room = ({ openModal }) => {
       {/* Desk against back wall on the left - moved further left and up from floor */}
       <Desk position={[-2.5, 0.1, -3.5]} openModal={openModal} />
 
-      {/* Bookshelf wall-mounted on left wall - positioned for wider room and up from floor */}
-      <Bookshelf position={[-3.85, 0.1, 0]} openModal={openModal} />
+      {/* Bookshelf wall-mounted on left wall - moved even closer to the wall */}
+      <Bookshelf position={[-3.95, 0.1, 0]} openModal={openModal} />
 
       {/* Bed moved to the left to create space for nightstand and pushed against back wall */}
       <Bed position={[0.5, 0, -3.4]} openModal={openModal} />
 
       {/* Wall Art on back wall, centered */}
-      <WallArt position={[0, 3, -4.3]} openModal={openModal} />
+      <WallArt position={[0, 3.8, -4.3]} openModal={openModal} />
+
+      {/* Light Switch on front left wall */}
+      <LightSwitch
+        position={[-3.8, 1.5, 3.5]}
+        onToggle={toggleLights}
+        isOn={lightsOn}
+      />
 
       {/* Long window on right wall where frame used to be */}
       <group position={[3.85, 2.5, 0]} rotation={[0, -Math.PI / 2, 0]}>

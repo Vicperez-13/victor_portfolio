@@ -76,27 +76,77 @@
 @media (max-width: 768px) {
   .modal-content {
     width: 95vw;
-    max-height: 85vh;
+    max-height: 90vh; /* Increased height for mobile */
+    margin: 5vh auto;
   }
 
   .modal-body {
     padding: 24px;
+    max-height: calc(90vh - 80px); /* Account for close button */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
 
   .modal-close {
     top: 16px;
     right: 16px;
-    width: 36px;
-    height: 36px;
+    width: 44px; /* Larger touch target */
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
   }
 }
 
 @media (max-width: 480px) {
   .modal-backdrop {
-    padding: 10px;
+    padding: 5px; /* Minimal padding for small screens */
+  }
+
+  .modal-content {
+    width: 98vw;
+    max-height: 95vh;
+    margin: 2.5vh auto;
+    border-radius: 12px;
   }
 
   .modal-body {
+    padding: 16px;
+    max-height: calc(95vh - 70px);
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Touch-specific improvements */
+@media (hover: none) and (pointer: coarse) {
+  .modal-close {
+    /* Larger touch target for touch devices */
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .modal-body {
+    /* Better scrolling on touch devices */
+    scroll-behavior: smooth;
+    overscroll-behavior: contain;
+  }
+}
+
+/* Landscape mobile optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+  .modal-content {
+    max-height: 85vh;
+    width: 90vw;
+  }
+
+  .modal-body {
+    max-height: calc(85vh - 80px);
     padding: 20px;
   }
 }
